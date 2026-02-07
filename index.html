@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/svg+xml" href="https://cdn-icons-png.flaticon.com/512/706/706164.png" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>غدوة | أكل بيتي يوصلك لحد بابك</title>
+
+  <!-- Google Fonts: Cairo -->
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;500;600;700;800;900&display=swap"
+    rel="stylesheet">
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Confetti Library -->
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: '#E63946', // Professional Red
+            secondary: '#374151', // Neutral Gray Text
+            accent: '#457B9D', // Steel Blue
+            background: '#F9FAFB', // Light Gray Background
+            surface: '#FFFFFF',
+          },
+          fontFamily: {
+            sans: ['Cairo', 'sans-serif'],
+            cairo: ['Cairo', 'sans-serif'],
+          },
+          animation: {
+            'fade-in-up': 'fadeInUp 0.4s ease-out forwards',
+          },
+          keyframes: {
+            fadeInUp: {
+              '0%': { opacity: '0', transform: 'translateY(10px)' },
+              '100%': { opacity: '1', transform: 'translateY(0)' },
+            }
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    body {
+      background-color: #F9FAFB;
+      color: #374151;
+    }
+
+    /* Previously glass-card, now modern flat card */
+    .glass-card {
+      background: #FFFFFF;
+      border: 1px solid #E5E7EB;
+      /* Gray-200 */
+      box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.02), 0 1px 2px 0 rgba(0, 0, 0, 0.01);
+    }
+
+    .soft-shadow {
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+    }
+
+    .sidebar-gradient {
+      background: #1F2937;
+      /* Gray-800 - Solid, no gradient */
+    }
+
+    .custom-scrollbar::-webkit-scrollbar {
+      width: 5px;
+    }
+
+    .custom-scrollbar::-webkit-scrollbar-thumb {
+      background: #D1D5DB;
+      border-radius: 10px;
+    }
+
+    .custom-scrollbar::-webkit-scrollbar-track {
+      background: transparent;
+    }
+  </style>
+
+</head>
+
+<body class="font-cairo selection:bg-primary/20 selection:text-primary">
+  <div id="root"></div>
+  <script type="module" src="/index.tsx"></script>
+</body>
+
+</html>
