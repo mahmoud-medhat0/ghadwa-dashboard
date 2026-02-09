@@ -249,7 +249,7 @@ export const uploadImage = async (file: File, folder: string): Promise<string> =
 
 // ============== DASHBOARD STATS ==============
 export const fetchDashboardStats = async () => {
-    const [orders, chefs, menuItems, offers, boxes, partners, promoCodes] = await Promise.all([
+    const [orders, chefs, menuItems, offers, boxes, partners, promoCodes, allOrders] = await Promise.all([
         supabase.from('orders').select('*', { count: 'exact', head: true }),
         supabase.from('chefs').select('*', { count: 'exact', head: true }),
         supabase.from('menu_items').select('*', { count: 'exact', head: true }),
@@ -257,7 +257,16 @@ export const fetchDashboardStats = async () => {
         supabase.from('boxes').select('*', { count: 'exact', head: true }),
         supabase.from('partners').select('*', { count: 'exact', head: true }),
         supabase.from('promo_codes').select('*', { count: 'exact', head: true }),
+        supabase.from('orders').select('total, status'),
     ]);
+
+    // Calculate order statistics
+    const ordersList = allOrders.data || [];
+    const totalOrderValue = ordersList.reduce((sum, o) => sum + (Number(o.total) || 0), 0);
+    const avgOrderValue = ordersList.length > 0 ? Math.round(totalOrderValue / ordersList.length) : 0;
+    const pendingOrders = ordersList.filter(o => o.status === 'pending' || o.status === 'جديد' || o.status === 'قيد التحضير').length;
+    const completedOrders = ordersList.filter(o => o.status === 'completed' || o.status === 'delivered' || o.status === 'تم التسليم' || o.status === 'مكتمل').length;
+    const cancelledOrders = ordersList.filter(o => o.status === 'cancelled' || o.status === 'ملغي').length;
 
     return {
         ordersCount: orders.count || 0,
@@ -267,6 +276,10 @@ export const fetchDashboardStats = async () => {
         boxesCount: boxes.count || 0,
         partnersCount: partners.count || 0,
         promoCodesCount: promoCodes.count || 0,
+        avgOrderValue,
+        pendingOrders,
+        completedOrders,
+        cancelledOrders,
     };
 };
 

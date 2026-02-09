@@ -51,6 +51,8 @@ CREATE TABLE IF NOT EXISTS menu_items (
     time TEXT,
     order_count INTEGER DEFAULT 0,
     tags TEXT[] DEFAULT '{}',
+    is_featured BOOLEAN DEFAULT FALSE,
+    is_active BOOLEAN DEFAULT TRUE,
     created_at TIMESTAMPTZ DEFAULT NOW()
 );
 

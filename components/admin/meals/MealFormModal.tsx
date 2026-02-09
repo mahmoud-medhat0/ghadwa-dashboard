@@ -21,6 +21,24 @@ export const MealFormModal: React.FC<MealFormModalProps> = ({
     return (
         <AdminFormModal isOpen={isOpen} onClose={onClose} title={currentMeal ? "تعديل الوجبة" : "إضافة وجبة جديدة"} onSubmit={onSubmit}>
             <div className="space-y-4">
+                {/* Active Status Toggle */}
+                <div className="flex items-center justify-between p-4 bg-gray-50 rounded-2xl border border-gray-200">
+                    <div className="flex items-center gap-3">
+                        <div className={`w-3 h-3 rounded-full ${formData.isActive !== false ? 'bg-green-500' : 'bg-red-500'}`}></div>
+                        <span className="font-bold text-gray-700">حالة الوجبة</span>
+                    </div>
+                    <label className="relative inline-flex items-center cursor-pointer">
+                        <input
+                            type="checkbox"
+                            className="sr-only peer"
+                            checked={formData.isActive !== false}
+                            onChange={e => setFormData({ ...formData, isActive: e.target.checked })}
+                        />
+                        <div className="w-14 h-7 bg-gray-300 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:start-[4px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-6 after:w-6 after:transition-all peer-checked:bg-green-500"></div>
+                        <span className="ms-3 text-sm font-bold text-gray-600">{formData.isActive !== false ? 'فعال ✓' : 'غير فعال ✗'}</span>
+                    </label>
+                </div>
+
                 {/* Image Upload Area */}
                 <ImageUpload
                     label="صورة الوجبة"
@@ -130,6 +148,15 @@ export const MealFormModal: React.FC<MealFormModalProps> = ({
                                 }}
                             />
                             <span className="text-sm font-bold text-blue-700">مجمدات وتجهيز ❄️</span>
+                        </label>
+                        <label className="flex items-center gap-2 cursor-pointer bg-yellow-50 px-4 py-2 rounded-xl border border-yellow-100 hover:bg-yellow-100 transition-all">
+                            <input
+                                type="checkbox"
+                                className="accent-yellow-600 w-4 h-4"
+                                checked={formData.isFeatured}
+                                onChange={e => setFormData({ ...formData, isFeatured: e.target.checked })}
+                            />
+                            <span className="text-sm font-bold text-yellow-700">الأكثر طلباً ⭐</span>
                         </label>
                     </div>
                 </div>

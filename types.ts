@@ -50,6 +50,8 @@ export interface MenuItem {
     reviewsList?: Review[];
     expiryDate?: string;
     tags?: string[];
+    isFeatured?: boolean;
+    isActive?: boolean;
 }
 
 export interface CartItem extends MenuItem {

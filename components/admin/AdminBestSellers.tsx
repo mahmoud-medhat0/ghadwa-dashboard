@@ -14,8 +14,8 @@ export const AdminBestSellers: React.FC = () => {
     const { data: chefs = [] } = useQuery({ queryKey: ['chefs'], queryFn: api.fetchChefs });
     const mutations = useMutations();
 
-    // Filter Best Sellers (> 30 orders)
-    const bestSellers = menuItems.filter((m: any) => (m.orderCount || 0) > 30);
+    // Filter Best Sellers (isFeatured flag)
+    const bestSellers = menuItems.filter((m: any) => m.isFeatured === true);
 
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
@@ -119,13 +119,14 @@ export const AdminBestSellers: React.FC = () => {
             img: formData.img,
             rating: Number(formData.rating),
             time: formData.time,
-            description: formData.desc
+            description: formData.desc,
+            is_featured: true
         };
 
         if (currentItem) {
             mutations.updateMenuItemMutation.mutate({ ...currentItem, ...itemData });
         } else {
-            mutations.createMenuItemMutation.mutate({ ...itemData, orderCount: 50 });
+            mutations.createMenuItemMutation.mutate(itemData);
         }
         setIsModalOpen(false);
     };

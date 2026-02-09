@@ -124,6 +124,10 @@ export const AdminDashboard: React.FC = () => {
                 totalOrders={stats?.ordersCount || 0}
                 chefsCount={stats?.chefsCount || 0}
                 visitorsCount={1250}
+                avgOrderValue={stats?.avgOrderValue || 0}
+                pendingOrders={stats?.pendingOrders || 0}
+                completedOrders={stats?.completedOrders || 0}
+                cancelledOrders={stats?.cancelledOrders || 0}
             />
 
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">

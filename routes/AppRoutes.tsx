@@ -55,6 +55,40 @@ const RootRedirect = () => {
     return <Navigate to={user ? "/admin/dashboard" : "/login"} replace />;
 };
 
+// Wrapper component to handle settings data fetching
+const SettingsRoute = () => {
+    const [settings, setSettings] = React.useState<any>({});
+    const [isLoading, setIsLoading] = React.useState(true);
+
+    React.useEffect(() => {
+        const loadSettings = async () => {
+            try {
+                const { fetchSettings } = await import('../services/api');
+                const data = await fetchSettings();
+                setSettings(data);
+            } catch (err) {
+                console.error('Failed to load settings', err);
+            } finally {
+                setIsLoading(false);
+            }
+        };
+        loadSettings();
+    }, []);
+
+    const handleUpdate = async (newSettings: any) => {
+        try {
+            const { updateSettings } = await import('../services/api');
+            const updated = await updateSettings(newSettings);
+            setSettings(updated);
+        } catch (err) {
+            console.error('Failed to update settings', err);
+        }
+    };
+
+    if (isLoading) return <Loading />;
+    return <AdminContactSettings settings={settings} onUpdate={handleUpdate} />;
+};
+
 export const AppRoutes: React.FC = () => {
     return (
         <Suspense fallback={<Loading />}>
@@ -95,6 +129,8 @@ export const AppRoutes: React.FC = () => {
                     <Route path="promos" element={<AdminPromoCodes />} />
 
                     <Route path="menu-upload" element={<AdminMenuUpload />} />
+
+                    <Route path="settings" element={<SettingsRoute />} />
                 </Route>
 
                 {/* Catch all unmatched routes */}

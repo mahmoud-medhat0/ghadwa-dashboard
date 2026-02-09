@@ -15,6 +15,7 @@ export const MealTable: React.FC<MealTableProps> = ({ meals, onEdit, onDelete })
                     <tr className="text-gray-400 text-[10px] font-black uppercase tracking-widest">
                         <th className="p-5">الصورة</th>
                         <th className="p-5">اسم الوجبة</th>
+                        <th className="p-5">الحالة</th>
                         <th className="p-5">السعر</th>
                         <th className="p-5">القسم</th>
                         <th className="p-5">الشيف</th>
@@ -31,6 +32,19 @@ export const MealTable: React.FC<MealTableProps> = ({ meals, onEdit, onDelete })
                                 </div>
                             </td>
                             <td className="p-5 font-black text-gray-900 group-hover:text-primary transition-colors">{meal.name}</td>
+                            <td className="p-5">
+                                {meal.isActive !== false ? (
+                                    <span className="bg-green-100 text-green-600 px-3 py-1.5 rounded-lg text-[10px] font-black flex items-center gap-1.5 w-fit">
+                                        <span className="w-2 h-2 bg-green-500 rounded-full"></span>
+                                        فعال
+                                    </span>
+                                ) : (
+                                    <span className="bg-red-100 text-red-600 px-3 py-1.5 rounded-lg text-[10px] font-black flex items-center gap-1.5 w-fit">
+                                        <span className="w-2 h-2 bg-red-500 rounded-full"></span>
+                                        غير فعال
+                                    </span>
+                                )}
+                            </td>
                             <td className="p-5 text-primary font-black">{meal.price} ج.م</td>
                             <td className="p-5">
                                 <span className="bg-gray-100 text-gray-500 px-3 py-1 rounded-lg text-[10px] font-black uppercase">{meal.category}</span>

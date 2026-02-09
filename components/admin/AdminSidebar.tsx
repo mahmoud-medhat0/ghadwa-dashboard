@@ -66,6 +66,9 @@ export const AdminSidebar: React.FC<AdminSidebarProps> = ({ onLogout }) => {
                 <NavLink to="/admin/menu-upload" className={getLinkClass}>
                     <i className="fa-solid fa-file-pdf w-5"></i> المنيو
                 </NavLink>
+                <NavLink to="/admin/settings" className={getLinkClass}>
+                    <i className="fa-solid fa-gear w-5"></i> الإعدادات
+                </NavLink>
             </nav>
             <div className="p-4 border-t border-white/10 bg-black/20">
                 <button onClick={onLogout} className="w-full flex items-center justify-center gap-2 px-4 py-3 rounded-xl text-red-400 bg-white/5 hover:bg-red-500/10 hover:text-red-500 transition-all font-bold text-sm group">

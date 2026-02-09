@@ -21,7 +21,7 @@ export const AdminMeals: React.FC = () => {
     const [currentMeal, setCurrentMeal] = useState<MenuItem | null>(null);
     const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
     const [mealToDelete, setMealToDelete] = useState<number | null>(null);
-    const [formData, setFormData] = useState<any>({ name: '', price: 0, desc: '', image: '', rating: 5, reviews: 0, category: '', chefId: 0, categoryId: 0, tags: [] });
+    const [formData, setFormData] = useState<any>({ name: '', price: 0, desc: '', image: '', rating: 5, reviews: 0, category: '', chefId: 0, categoryId: 0, tags: [], isFeatured: false, isActive: true });
 
     if (isLoading) return <Loading />;
 
@@ -38,7 +38,9 @@ export const AdminMeals: React.FC = () => {
             categoryId: categories[0]?.id || 0,
             chef: chefs[0]?.name || '',
             chefId: chefs[0]?.id || 0,
-            tags: []
+            tags: [],
+            isFeatured: false,
+            isActive: true
         });
         setIsModalOpen(true);
     };
@@ -50,7 +52,9 @@ export const AdminMeals: React.FC = () => {
             desc: meal.desc || meal.description || '', // Handle description mapping
             categoryId: categories.find(c => c.name === meal.category)?.id || 0,
             chefId: chefs.find(c => c.name === meal.chef)?.id || 0,
-            tags: meal.tags || []
+            tags: meal.tags || [],
+            isFeatured: meal.isFeatured || false,
+            isActive: meal.isActive !== false
         });
         setIsModalOpen(true);
     };
@@ -80,7 +84,9 @@ export const AdminMeals: React.FC = () => {
             img: formData.img,
             rating: Number(formData.rating || 5),
             time: formData.time,
-            tags: formData.tags || []
+            tags: formData.tags || [],
+            is_featured: formData.isFeatured || false,
+            is_active: formData.isActive !== false
         };
 
         if (currentMeal) {
