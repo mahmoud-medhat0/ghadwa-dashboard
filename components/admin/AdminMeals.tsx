@@ -54,7 +54,12 @@ export const AdminMeals: React.FC = () => {
             chefId: chefs.find(c => c.name === meal.chef)?.id || 0,
             tags: meal.tags || [],
             isFeatured: meal.isFeatured || false,
-            isActive: meal.isActive !== false
+            isActive: meal.isActive !== false,
+            // Nutrition fields
+            calories: meal.calories,
+            fats: meal.fats,
+            protein: meal.protein,
+            carbs: meal.carbs
         });
         setIsModalOpen(true);
     };
@@ -86,7 +91,12 @@ export const AdminMeals: React.FC = () => {
             time: formData.time,
             tags: formData.tags || [],
             is_featured: formData.isFeatured || false,
-            is_active: formData.isActive !== false
+            is_active: formData.isActive !== false,
+            // Nutrition fields (optional)
+            calories: formData.calories || null,
+            fats: formData.fats || null,
+            protein: formData.protein || null,
+            carbs: formData.carbs || null
         };
 
         if (currentMeal) {

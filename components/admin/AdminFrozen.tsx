@@ -64,7 +64,12 @@ export const AdminFrozen: React.FC = () => {
             desc: meal.desc || meal.description || '',
             categoryId: categories.find(c => c.name === meal.category)?.id || 0,
             chefId: chefs.find(c => c.name === meal.chef)?.id || 0,
-            tags: meal.tags || []
+            tags: meal.tags || [],
+            // Nutrition fields
+            calories: meal.calories,
+            fats: meal.fats,
+            protein: meal.protein,
+            carbs: meal.carbs
         });
         setIsModalOpen(true);
     };
@@ -93,7 +98,12 @@ export const AdminFrozen: React.FC = () => {
             img: formData.img,
             rating: Number(formData.rating || 5),
             time: formData.time,
-            tags: formData.tags || []
+            tags: formData.tags || [],
+            // Nutrition fields (optional)
+            calories: formData.calories || null,
+            fats: formData.fats || null,
+            protein: formData.protein || null,
+            carbs: formData.carbs || null
         };
 
         if (currentMeal) {

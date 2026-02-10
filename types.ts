@@ -52,6 +52,12 @@ export interface MenuItem {
     tags?: string[];
     isFeatured?: boolean;
     isActive?: boolean;
+
+    // Nutrition information (optional, for healthy meals)
+    calories?: number;
+    fats?: number;
+    protein?: number;
+    carbs?: number;
 }
 
 export interface CartItem extends MenuItem {

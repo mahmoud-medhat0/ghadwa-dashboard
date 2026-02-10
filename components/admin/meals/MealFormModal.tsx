@@ -114,6 +114,73 @@ export const MealFormModal: React.FC<MealFormModalProps> = ({
                         </select>
                     </div>
                 </div>
+
+                {/* Nutrition Information Section (Optional) */}
+                <div className="space-y-3 pt-4 border-t border-gray-100">
+                    <div className="flex items-center gap-2">
+                        <span className="text-[10px] font-black text-gray-400 uppercase tracking-widest">معلومات غذائية (اختياري)</span>
+                        <span className="text-xs text-gray-400">للوجبات الصحية</span>
+                    </div>
+                    <div className="grid grid-cols-2 gap-3">
+                        <div className="space-y-1">
+                            <label className="text-[10px] font-bold text-orange-600 flex items-center gap-1">
+                                <span>🔥</span>
+                                <span>السعرات الحرارية</span>
+                            </label>
+                            <input
+                                type="number"
+                                placeholder="371"
+                                className="w-full p-2.5 bg-orange-50 rounded-xl border border-orange-100 text-gray-800 font-bold outline-none focus:bg-white focus:border-orange-300 transition-all text-sm"
+                                value={formData.calories || ''}
+                                onChange={e => setFormData({ ...formData, calories: e.target.value ? parseFloat(e.target.value) : undefined })}
+                            />
+                        </div>
+                        <div className="space-y-1">
+                            <label className="text-[10px] font-bold text-yellow-600 flex items-center gap-1">
+                                <span>🥑</span>
+                                <span>الدهون (جم)</span>
+                            </label>
+                            <input
+                                type="number"
+                                step="0.1"
+                                placeholder="10"
+                                className="w-full p-2.5 bg-yellow-50 rounded-xl border border-yellow-100 text-gray-800 font-bold outline-none focus:bg-white focus:border-yellow-300 transition-all text-sm"
+                                value={formData.fats || ''}
+                                onChange={e => setFormData({ ...formData, fats: e.target.value ? parseFloat(e.target.value) : undefined })}
+                            />
+                        </div>
+                        <div className="space-y-1">
+                            <label className="text-[10px] font-bold text-red-600 flex items-center gap-1">
+                                <span>🍗</span>
+                                <span>البروتين (جم)</span>
+                            </label>
+                            <input
+                                type="number"
+                                step="0.1"
+                                placeholder="35"
+                                className="w-full p-2.5 bg-red-50 rounded-xl border border-red-100 text-gray-800 font-bold outline-none focus:bg-white focus:border-red-300 transition-all text-sm"
+                                value={formData.protein || ''}
+                                onChange={e => setFormData({ ...formData, protein: e.target.value ? parseFloat(e.target.value) : undefined })}
+                            />
+                        </div>
+                        <div className="space-y-1">
+                            <label className="text-[10px] font-bold text-amber-600 flex items-center gap-1">
+                                <span>🌾</span>
+                                <span>الكربوهيدرات (جم)</span>
+                            </label>
+                            <input
+                                type="number"
+                                step="0.1"
+                                placeholder="34"
+                                className="w-full p-2.5 bg-amber-50 rounded-xl border border-amber-100 text-gray-800 font-bold outline-none focus:bg-white focus:border-amber-300 transition-all text-sm"
+                                value={formData.carbs || ''}
+                                onChange={e => setFormData({ ...formData, carbs: e.target.value ? parseFloat(e.target.value) : undefined })}
+                            />
+                        </div>
+                    </div>
+                    <p className="text-[9px] text-gray-400 font-bold mr-1">اترك الحقول فارغة إذا لم تكن متوفرة</p>
+                </div>
+
                 <div className="space-y-2 pt-2 border-t border-gray-100">
                     <label className="text-[10px] font-black text-gray-400 uppercase tracking-widest pr-1">تصنيفات إضافية (اختياري)</label>
                     <div className="flex gap-4">
